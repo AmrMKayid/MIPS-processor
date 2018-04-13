@@ -7,10 +7,12 @@
 
 
 # Add the output Name here
-EXEC = DataMemory
+EXEC = DataMemory Mux2way1
 
-$(EXEC): makefile
-	iverilog -o $(EXEC) $(EXEC).v tests/$(EXEC)_tb.v
+COMMAND := for e in $(EXEC); do iverilog -o $$e $$e.v tests/$$e\_tb.v tests/assert.v; done
+
+all: makefile
+	@$(COMMAND)
 # housekeeping
 clean:
 	rm -f $(EXEC) 
