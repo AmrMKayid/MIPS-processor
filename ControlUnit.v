@@ -22,7 +22,15 @@ module ControlUnit(RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg
 
 	always@(OPCode) begin
 		case(OPCode)
-		6'b000000: RegDst <= 1; RegWrite <= 1; ALUSrc <= 0; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2;
+		6'h00: RegDst <= 1; RegWrite <= 1; ALUSrc <= 0; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*R instructions*/
+		6'h08: RegDst <= 0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*Addi*/ 
+		6'h23: RegDst <= 0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 1; MemWrite <= 0; MemtoReg <= 1; ALUop <= 0; /*lw*/ 
+		6'h2B: RegDst <= 0; RegWrite <= 0; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 1; MemtoReg <= 0; ALUop <= 0; /*sw*/ 
+		6'h21: RegDst <= 0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 1; MemWrite <= 0; MemtoReg <= 1; ALUop <= 0; /*lh*/ 
+		6'h25: RegDst <= 0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 1; MemWrite <= 0; MemtoReg <= 1; ALUop <= 0; /*lhu*/
+		6'h0C: RegDst <= 0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*andi*/ 
+		6'h0D: RegDst <= 0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*ori*/
+		6'h04: RegDst <= 0; RegWrite <= 0; ALUSrc <= 0; Branch <= 1; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 1; /*beq*/
 		endcase
 
 	end
