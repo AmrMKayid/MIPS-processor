@@ -15,15 +15,16 @@
   *
   */
 
-module Mux2way1(data_out, a, b, c, d, sel);
+
+module Mux4way1(data_out, a, b, c, d, sel);
 
 	output data_out; 
 	input a, b, c, d;
 	input[1:0] sel;
 	wire  w1, w2; // w1 = M1.data_out w2 = M2.data_out
 
-	Mux2way1 M1(w1, a, b, sel[0])
-	Mux2way1 M2(w2, c, d, sel[1])
-	Mux2way1 M_out(data_out, w1, w2, sel[1])
+	Mux2way1 M1(w1, a, b, sel[0]);
+	Mux2way1 M2(w2, c, d, sel[1]);
+	Mux2way1 M_out(data_out, w1, w2, sel[1]);
 
 endmodule
