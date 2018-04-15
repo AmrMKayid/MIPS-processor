@@ -9,7 +9,7 @@
   *		-b: 1 bit to be routed according to sel
   *		-c: 1 bit to be routed according to sel
   *		-d: 1 bit to be routed according to sel
-  *		-sel: 1 bit signal to chose between a or b (0 selects a, 1 selects b)
+  *		-sel: 2 bit signal to chose between a or b (00 selects a, 01 selects b, 10 selects c, 11 selects d)
   *
   * Built using three 2X1 Mux
   *
