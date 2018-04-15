@@ -7,7 +7,7 @@
 
 
 # Add the output Name here
-EXEC = DataMemory Mux2way1 Mux2way32
+EXEC = DataMemory Mux2way1 Mux2way32 Mux4way1
 
 COMMAND := for e in $(EXEC); do iverilog -o $$e $$e.v tests/$$e\_tb.v tests/assert.v; done
 

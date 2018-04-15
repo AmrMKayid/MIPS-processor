@@ -1,6 +1,6 @@
 /**
   * Test for the 2x1 Mux 
-  * Makes the Mux behaves as expected
+  * Makes sure the Mux behaves as expected
   *
   */
 module Mux2way1_tb();
