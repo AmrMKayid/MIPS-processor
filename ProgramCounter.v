@@ -2,10 +2,10 @@
   * Program Counter module
   *
   * Output Ports:
-  *   - IncPC:  32 bit registered output
+  *   - IncPC:   32 bit incremented PC by 4
   *
   * Input ports:
-  * 	- PrevPC:  5-Bit address to select a register to be read
+  * 	- PrevPC:  32 bit previous PC
   *
   */
 
