@@ -7,7 +7,7 @@
 
 
 # !!!! Add the SRC file path to this list !!!!
-SRCS = DataMemory.v Mux2way1.v Mux2way32.v Mux4way1.v Mux4way32.v
+SRCS = DataMemory.v Mux2way1.v Mux2way32.v Mux4way1.v Mux4way32.v SignExtend.v
 
 # Automatically generates list of objects
 EXEC = $(SRCS:.v=)
