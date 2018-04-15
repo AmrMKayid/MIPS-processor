@@ -16,7 +16,7 @@ Mux4way1 m(out, in[0], in[1], in[2], in[3], sel[1:0]);
 
 
 	initial begin
-		$monitor("time=%t",$time ,"  a=%d", in[0],"  b=%d", in[1],"  sel=%d", sel[1:0],  "", "  out:%d", out);
+		$monitor("time=%t",$time ,"  a=%d", in[0],"  b=%d", in[1], " c=%d", in[2], " d=%d", in[3], " sel=%d", sel[1:0],  "   out:%d", out);
 		repeat(16) begin
 			repeat(4) begin
 				#5 sel = sel + 1;
