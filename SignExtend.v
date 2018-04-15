@@ -6,7 +6,7 @@
   */
 
 module SignExtend(out, in);
-	output[31:0] out;
+	output reg[31:0] out;
 	input [15:0] in;
 
 	always@(in) begin
