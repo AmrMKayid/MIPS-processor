@@ -17,7 +17,7 @@ wire [31:0] shifted;
 
 initial begin
 
-#0 sign_extended = 11111111111111111111111111111111;
+#0 sign_extended = 32'b11111111111111111111111111111111;
 
 
 end
