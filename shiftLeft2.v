@@ -1,9 +1,9 @@
-module shiftLeft2(clk, sign_extended, shifted);
+module shiftLeft2(sign_extended, shifted);
     input clk;
     input [31:0] sign_extended;
     output reg [31:0] shifted;
     
-    always @ (posedge clk)
+    always @ (sign_extended)
     begin
     shifted <= sign_extended << 2;
     end
@@ -13,29 +13,27 @@ endmodule
 
 module test();
 reg [31:0] sign_extended;
-reg clk;
 wire [31:0] shifted;
 
 initial begin
-clk = 0;
-forever begin
-#5 clk = ~clk;
-end
+
+#0 sign_extended = 11111111111111111111111111111111;
+
+
 end
  
-shiftLeft2 SL (clk, sign_extended, shifted);
+shiftLeft2 SL (sign_extended, shifted);
  
 initial begin
-$monitor("time=%t shifted=%b clk=%b" , $time , shifted, clk);
-#5 sign_extended <= 32'b11111111111111111111111111111111;
-#5 sign_extended <= 32'b11111111111111111111111111111111;
-#5 sign_extended <= 32'b11111111111111111111111111111111;
-#5 sign_extended <= 32'b11111111111111111111111111111111;
-#5 sign_extended <= 32'b11111111111111111111111111111111;
+$monitor("time=%t shifted=%b" , $time , shifted);
+#5 sign_extended <= 32'b11111111111111110111111111111111;
+#5 sign_extended <= 32'b11111111111111111011111111111111;
+#5 sign_extended <= 32'b11111111111111111101111111111111;
+#5 sign_extended <= 32'b11111111111111110110111111111111;
+#5 sign_extended <= 32'b11111111111111110111101111111111;
 
 
-
-#5 $finish;
+#50 $finish;
 end
 
 endmodule
