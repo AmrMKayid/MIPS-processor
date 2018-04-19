@@ -1,5 +1,5 @@
 `timescale 1ns / 1ps
-`include "Instruction_Mem.v"
+//`include "Instruction_Mem.v"
 
 module Instruction_Mem_tb();
 reg clk;
