@@ -17,19 +17,19 @@ initial
 begin
 $monitor("%t  %d  %h	%b",	$time,adress,instruction,	clk);
 adress<=0;
-# 10 adress<=1;
-# 10 adress<=2;
-# 10 adress<=3;
 # 10 adress<=4;
-# 10 adress<=5;
-# 10 adress<=6;
-# 10 adress<=7;
 # 10 adress<=8;
-# 10 adress<=9;
-# 10 adress<=10;
-# 10 adress<=11;
 # 10 adress<=12;
-# 10 adress<=13;
+# 10 adress<=16;
+# 10 adress<=20;
+# 10 adress<=24;
+# 10 adress<=28;
+# 10 adress<=32;
+# 10 adress<=36;
+# 10 adress<=40;
+# 10 adress<=44;
+# 10 adress<=48;
+# 10 adress<=52;
 
 # 10 $finish;
 end
