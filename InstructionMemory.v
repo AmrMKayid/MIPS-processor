@@ -8,18 +8,10 @@ reg [7:0] memory[0:64];
 reg [31:0] helper;
 initial
 begin
-$readmemh("instructions.txt",memory);
+$readmemh("program/instructions.txt",memory);
 end
 always @ (posedge clk)
 begin
-// helper=address;
-// instruction= (instruction|memory[helper])<<6;
-// helper=address+1'b1;
-// instruction= (instruction|memory[helper])<<4;
-// helper=address+1'b1;
-// instruction= (instruction|memory[helper])<<2;
-// helper=address+1'b1;
-// instruction= (instruction|memory[helper]);
 
 instruction[31:24]<=memory[address];
 instruction[23:16]<=memory[address+1'b1];

@@ -9,8 +9,10 @@ module Processor();
 
 	wire[32] pc;
 
-	ProgramCounter PC(IncPC, , clk);
+	ProgramCounter PC(pc, PrevPC, clk);
 	
+
+
 
 
 
