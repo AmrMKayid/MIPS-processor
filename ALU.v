@@ -3,6 +3,7 @@
   *
   * output:
   * out: the result of the operation
+  * Zero: 1 (if data1 - data1 == 0)
   *
   * input: 
   * ALU Control: the opcode of the ALU operation
@@ -20,10 +21,11 @@
   */
 
 
-module ALU (out, ALUControl, Data1, Data2);   
+module ALU (out, zero, ALUControl, Data1, Data2);   
 
     input [3:0] ALUControl;
     input [31:0] Data1,Data2;
+	output reg zero;
     output reg [31:0] out;
     always @(ALUControl, Data1, Data2)
 
@@ -42,6 +44,7 @@ module ALU (out, ALUControl, Data1, Data2);
     
             default: out <= 0;  
         endcase    
+		zero = (Data2 - Data1 == 0);
     end 
     
 endmodule

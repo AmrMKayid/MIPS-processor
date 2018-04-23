@@ -2,7 +2,7 @@ module ALU_tb();
 reg [3:0] ALUControl;
 reg [31:0] Data1,Data2;
 wire [31:0] out;
-
+wire zero;
 initial begin
 
 #0 ALUControl = 4'b0000;
@@ -13,7 +13,7 @@ initial begin
 
 end
  
-ALU alu (out, ALUControl, Data1, Data2);
+ALU alu (out,zero, ALUControl, Data1, Data2);
  
 initial begin
 $monitor("ALUControl=%d $Data1=%b  $Data2=%b  out=%b" , ALUControl, Data1, Data2 , out);
