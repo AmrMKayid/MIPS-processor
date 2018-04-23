@@ -12,7 +12,7 @@ module Mux2way5_tb();
 	in = 0;
 	sel = 0;
 	end
-Mux2way16 m(out[9:0], in[9:0], in[9:5], sel);
+Mux2way5 m(out[4:0], in[4:0], in[9:5], sel);
 
 
 	initial begin
