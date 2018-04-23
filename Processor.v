@@ -9,29 +9,39 @@ module Processor(clk);
 
 	input clk;
 
-	wire[31: 0] pc, instruction, ReadData1, ReadData2, ALUOut, SEOut, PCin0, PCin1, shl;
+	wire[31: 0] pc, instruction, ReadData1, ReadData2, ALUOut, ALUCtrlOut, SEOut, PCin0, PCin1, shl, ALUroute, MemRoute, PCRoute, DataMemoryOut;
 	wire[3:0] ALUCtrlOut;
-	wire RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop;
+	wire[15:0] RdRoute;
+	wire RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUZero;
+	wire [1:0] ALUop;
 
-	
-	Adder PCadder1(PCin0, input1, input2);
-	Adder PCadder2(PCin1, input1, input2);
+	Adder PCadder0(PCin0, pc, 4);
+	Adder PCadder1(PCin1, PCin0, shl);
 	shiftLeft2(shl, input1);
+	Mux2way32 PCMux(PCRoute, PCin0, PCin1, PCsrc);
 
-	ProgramCounter PC(pc, PrevPC, clk);
+	ProgramCounter PC(pc, PCRoute, clk);
 	
-	InstructionMemory IM(instruction,address,clk);
+	InstructionMemory IM(instruction,pc,clk);
 
-	RegisterFile RF(ReadData1, ReadData2, ReadReg1, ReadReg2, WriteReg, WriteData, RegWrite, clk);
+	RegisterFile RF(ReadData1, ReadData2, instruction[25:21], instruction[20:16], RdRoute, MemRoute, RegWrite, clk);
 
-	SignExtend(SEOut, in);
+	SignExtend(SEOut, instruction[15:0]);
 
-	ALUControl ALUCtrl(ALUOut, ALUOp, FuncCode)
-	ALU ALU(ALUOut, ALUControl, Data1, Data2);   
+	ALUControl ALUCtrl(ALUCtrlOut, ALUop, instruction[5:0]);
+	ALU ALU(ALUOut, ALUZero ALUCtrlOut, ReadData1, ALUroute);   
 	
-	DataMemory DM(data_out, data_in, address, MemRead, MemWrite, clk);
+	DataMemory DM(DataMemoryOut, ReadData2, ALUOut, MemRead, MemWrite, clk);
 
-	ControlUnit(RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop, OPCode);
+	ControlUnit(RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop, instruction[31:26]);
 	
+	and PCSrc(PCsrc, ALUZero, Branch);
+	Mux2way16 InstructionMux(RdRoute, instruction[20:16], instruction[15:11], RegDst);
+
+	Mux2way32 RegMux(ALUroute, ReadData2, SEOut, ALUSrc);
+
+	Mux2way32 MemMux(MemRoute, ALUOut, DataMemoryOut, MemtoReg);
+
+
 	
 endmodule
