@@ -14,6 +14,10 @@ EXEC = $(SRCS:.v=)
 
 COMMAND := for e in $(EXEC); do iverilog -o $$e $(SRCS) tests/$$e\_tb.v tests/assert.v; done
 
+
+processor: makefile
+	iverilog -o processor $(SRCS)
+
 all: makefile
 	@$(COMMAND)
 # housekeeping
