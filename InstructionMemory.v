@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
  
-module Instruction_Mem(instruction,address,clk);
+module InstructionMemory(instruction,address,clk);
 input clk;
 input [31:0] address;
 output reg [31:0] instruction;

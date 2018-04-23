@@ -1,5 +1,5 @@
 // Code your design here
-module adder(input1, input2, out);
+module Adder(out, input1, input2);
     input [31:0] input1;
     input [31:0] input2;
     output reg [31:0] out;

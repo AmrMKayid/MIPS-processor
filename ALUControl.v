@@ -1,4 +1,4 @@
-module ALUControl (ALUOp, FuncCode, out);
+module ALUControl (out, ALUOp, FuncCode);
 
 input [1:0] ALUOp;   
 input [5:0] FuncCode;   
