@@ -1,4 +1,12 @@
-ALUControl aluControl (ALUOp, FuncCode, out);
+module ALUControl_tb();
+
+wire[3:0] out;
+
+reg[1:0] ALUOp;
+
+reg[5:0] FuncCode;
+
+ALUControl aluControl (out, ALUOp, FuncCode);
  
 initial begin
 $monitor("time=%t ALUOp=%d FuncCode=%b out=%b", $time , ALUOp, FuncCode, out);

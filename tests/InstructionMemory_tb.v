@@ -5,7 +5,7 @@ module Instruction_Mem_tb();
 reg clk;
 reg [31:0] adress;
 wire [31:0] instruction;
-Instruction_Mem mem(instruction,adress,clk);
+InstructionMemory mem(instruction,adress,clk);
 
 initial	begin
  clk	=	0;

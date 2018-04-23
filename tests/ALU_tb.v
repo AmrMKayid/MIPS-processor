@@ -13,7 +13,7 @@ initial begin
 
 end
  
-ALU alu (ALUControl, Data1, Data2, out);
+ALU alu (out, ALUControl, Data1, Data2);
  
 initial begin
 $monitor("ALUControl=%d $Data1=%b  $Data2=%b  out=%b" , ALUControl, Data1, Data2 , out);

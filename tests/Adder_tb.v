@@ -11,7 +11,7 @@ initial begin
 
 end
  
-adder ADD (input1, input2, out);
+Adder ADD (out, input1, input2);
  
 initial begin
 $monitor("time=%t input1=%b input2=%b out=%b" , $time , input1, input2, out);

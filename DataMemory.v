@@ -19,19 +19,26 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, Clk);
 	input MemRead;
 	input MemWrite;
 	
-	reg[31:0] memory[63:0];
+	reg[7:0] memory[63:0];
 
 
 	always @(posedge Clk)
 	begin 
 		if(MemWrite)
 		begin 
-			memory[address] = data_in;
+			memory[address] = data_in & 32'hFF;
+			memory[address + 1] = (data_in >> 8) & 32'hFF;
+			memory[address + 2] = (data_in >> 16) & 32'hFF;
+			memory[address + 3] = (data_in >> 24) & 32'hFF;
 		end
 	end
 
 	always @(posedge MemRead or address)
-		if(MemRead)
-			data_out = memory[address];
+		if(MemRead) begin
+			data_out[7:0] = memory[address];
+			data_out[15:8] = memory[address + 1];
+			data_out[23:16] = memory[address + 2];
+			data_out[31:24] =memory[address + 3];
+		end
 
 endmodule
