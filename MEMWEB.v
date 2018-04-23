@@ -1,4 +1,4 @@
-module MEMWEB (clk, readData, address, WB, outreadData, outWB, outAddress);   
+module MEMWB (clk, readData, address, WB, writeBack, outreadData, outWB, outAddress, outWriteBack);   
 
     input  clk, readData, address, WB;
     output outReadData, outWB, outAddress;
@@ -7,6 +7,8 @@ module MEMWEB (clk, readData, address, WB, outreadData, outWB, outAddress);
     outReadData = readData;
     outWB = WB;
     outAddress = address;
+    outWriteBack = writeBack;
+
     end 
     
 endmodule
