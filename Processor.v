@@ -12,7 +12,7 @@ module Processor(clk);
 	wire[31: 0] pc, instruction, ReadData1, ReadData2, ALUOut, SEOut, PCin0, PCin1, shl, ALUroute, MemRoute, PCRoute, DataMemoryOut;
 	wire[3:0] ALUCtrlOut;
 	wire[4:0] RdRoute;
-	wire RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUZero;
+	wire RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUZero, LoadHalf,LoadHalfUnsigned;
 	wire [1:0] ALUop;
 
 	Adder PCadder0(PCin0, pc, 4);
@@ -33,7 +33,7 @@ module Processor(clk);
 	
 	DataMemory DM(DataMemoryOut, ReadData2, ALUOut, MemRead, MemWrite, clk);
 
-	ControlUnit CU(RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop, instruction[31:26]);
+	ControlUnit CU(LoadHalf,LoadHalfUnsigned, RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop, instruction[31:26]);
 	
 	and PCSrc(PCsrc, ALUZero, Branch);
 	Mux2way5 InstructionMux(RdRoute, instruction[20:16], instruction[15:11], RegDst);

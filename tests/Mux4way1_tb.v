@@ -3,7 +3,7 @@
   * Makes sure the Mux behaves as expected
   *
   */
-module Mux2way1_tb();
+module Mux4way1_tb();
 
 	reg[3:0] in;
 	reg[1:0] sel; 

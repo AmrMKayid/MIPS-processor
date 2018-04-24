@@ -8,7 +8,7 @@ reg [7:0] memory[0:64];
 reg [31:0] helper;
 initial
 begin
-$readmemh("program/instructions.txt",memory);
+$readmemh("addtrial.txt",memory);
 end
 always @ (posedge clk)
 begin
