@@ -25,16 +25,15 @@ module RegisterFile(ReadData1, ReadData2, ReadReg1, ReadReg2, WriteReg, WriteDat
 
   always @ ( ReadReg1, ReadReg2 )
   begin
-    // >>> $0 = 0
-    ReadData1 = (ReadReg1 == 0)? 32'b0 : Registers[ReadReg1];
-    ReadData2 = (ReadReg2 == 0)? 32'b0 : Registers[ReadReg2];
+    ReadData1 <= (ReadReg1 == 0)? 32'b0 : Registers[ReadReg1];
+    ReadData2 <= (ReadReg2 == 0)? 32'b0 : Registers[ReadReg2];
   end
 
   always @ ( posedge clk )
   begin
     if(RegWrite)
       begin
-        Registers[WriteReg] = WriteData;
+        Registers[WriteReg] <= WriteData;
       end
   end
 

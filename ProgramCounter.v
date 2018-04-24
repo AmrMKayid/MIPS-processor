@@ -9,15 +9,15 @@
   *
   */
 
-module ProgramCounter(IncPC, PrevPC, clk);
+module ProgramCounter(NextPC, Address, clk);
 
-  output reg[31:0] IncPC;
-  input [31:0] PrevPC;
+  output reg[31:0] NextPC;
+  input [31:0] Address;
   input clk;
 
   always @ ( posedge clk )
   begin
-    IncPC <= PrevPC + 4;
+    NextPC <= Address;
   end
 
 endmodule
