@@ -13,11 +13,11 @@
   */
 module DataMemory(data_out, data_in, address, MemRead, MemWrite, Clk);
 	output reg[31:0] data_out;
-	input[31:0] data_in;
-	input[31:0] address;
-	input Clk;
-	input MemRead;
-	input MemWrite;
+	input wire[31:0] data_in;
+	input wire[31:0] address;
+	input wire Clk;
+	input wire MemRead;
+	input wire MemWrite;
 	
 	reg[7:0] memory[63:0];
 

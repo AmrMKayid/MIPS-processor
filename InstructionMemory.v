@@ -2,7 +2,7 @@
  
 module InstructionMemory(instruction,address,clk);
 input clk;
-input [31:0] address;
+input wire [31:0] address;
 output reg [31:0] instruction;
 reg [7:0] memory[0:64];
 reg [31:0] helper;

@@ -1,9 +1,9 @@
 module MEMWEB (clk, readData, address, WB, writeBack, outReadData, outWB, outAddress, outWriteBack);   
 
     input  clk;
-    input [31:0] readData, address;
-    input [31:0] writeBack;
-    input WB;
+    input wire [31:0] readData, address;
+    input wire [31:0] writeBack;
+    input wire WB;
     output reg [31:0] outReadData, outAddress, outWriteBack;
     output reg outWB;
 

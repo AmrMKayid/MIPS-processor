@@ -19,8 +19,8 @@
 module Mux4way1(data_out, a, b, c, d, sel);
 
 	output data_out; 
-	input a, b, c, d;
-	input[1:0] sel;
+	input wire a, b, c, d;
+	input wire[1:0] sel;
 	wire  w1, w2; // w1 = M1.data_out w2 = M2.data_out
 
 	Mux2way1 M1(w1, a, b, sel[0]);

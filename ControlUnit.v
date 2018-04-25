@@ -18,7 +18,7 @@ module ControlUnit(LoadHalf,LoadHalfUnsigned,RegDst, RegWrite, ALUSrc, Branch, M
 
 	output reg RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg,LoadHalf,LoadHalfUnsigned;
 	output reg[1:0] ALUop;
-	input [5:0] OPCode;
+	input wire [5:0] OPCode;
 
 	always@(OPCode) begin
 		case(OPCode)

@@ -23,8 +23,8 @@
 
 module ALU (out, zero, ALUControl, Data1, Data2);   
 
-    input [3:0] ALUControl;
-    input [31:0] Data1,Data2;
+    input wire [3:0] ALUControl;
+    input wire [31:0] Data1,Data2;
 	output reg zero;
     output reg [31:0] out;
     always @(ALUControl, Data1, Data2)

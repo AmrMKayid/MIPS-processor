@@ -1,7 +1,7 @@
 module ALUControl (out, ALUOp, FuncCode);
 
-input [1:0] ALUOp;   
-input [5:0] FuncCode;   
+input wire [1:0] ALUOp;   
+input wire [5:0] FuncCode;   
 output reg [3:0] out;
 
     always @ (ALUOp or FuncCode)

@@ -17,9 +17,9 @@
 module RegisterFile(ReadData1, ReadData2, ReadReg1, ReadReg2, WriteReg, WriteData, RegWrite, clk);
 
   output reg[31:0] ReadData1, ReadData2;
-  input [4:0] ReadReg1, ReadReg2, WriteReg;
-  input [31:0] WriteData;
-  input RegWrite, clk;
+  input wire [4:0] ReadReg1, ReadReg2, WriteReg;
+  input wire [31:0] WriteData;
+  input wire RegWrite, clk;
 
   reg [31:0] Registers[31:0];
 
@@ -34,6 +34,7 @@ module RegisterFile(ReadData1, ReadData2, ReadReg1, ReadReg2, WriteReg, WriteDat
     if(RegWrite)
       begin
         Registers[WriteReg] <= WriteData;
+        //$display("t0:%d",Registers[08] );
       end
   end
 

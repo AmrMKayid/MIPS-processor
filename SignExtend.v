@@ -7,7 +7,7 @@
 
 module SignExtend(out, in);
 	output reg[31:0] out;
-	input [15:0] in;
+	input wire [15:0] in;
 
 	always@(in) begin
 		out[15:0] = in[15:0];

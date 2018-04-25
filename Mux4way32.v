@@ -18,8 +18,8 @@
 module Mux4way32(data_out, a, b, c, d, sel);
 
 	output[31:0] data_out; 
-	input[31:0] a, b, c, d;
-	input[1:0] sel;
+	input wire[31:0] a, b, c, d;
+	input wire[1:0] sel;
 	wire[31:0]  w1, w2; // w1 = M1.data_out w2 = M2.data_out
 
 	Mux2way32 M1(w1[31:0], a[31:0], b[31:0], sel[0]);

@@ -14,8 +14,8 @@
 module Mux2way16(data_out, a, b, sel);
 
 	output reg[15:0] data_out; 
-	input[15:0] a, b;
-	input sel;
+	input wire[15:0] a, b;
+	input wire sel;
 	wire not_sel, w1, w2, w3, w4; // w1 = a.b; w2 = b.sel; w3 = a.not_sel; w4 = w1 + w2
 
 	always@(a or b or sel)
