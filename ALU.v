@@ -38,11 +38,11 @@ module ALU (out, zero, ALUControl, Data1, Data2);
             4'b0010: out <= Data1 + Data2;            //add
             4'b0110: out <= Data1 - Data2;            //subtract
     
-            4'b0111: out <= Data1 < Data2 ? 1 : 0;    //slt
-            
-            4'b1100: out <= ~(Data1 | Data2);                 // nor      
-    
-            default: out <= 0;  
+            4'b0111: out <= $signed(Data1) < $signed(Data2) ? 1 : 0;    //slt signed
+            4'b1000: out <= Data1 < Data2 ? 1 : 0; //slt unsigned
+            4'b1001: out <= Data1 <<1;             //sll    
+            4'b1010: out <= Data1 >>1;             //srl
+            default: out <= 0;   
         endcase    
 		zero = (Data2 - Data1 == 0);
     end 

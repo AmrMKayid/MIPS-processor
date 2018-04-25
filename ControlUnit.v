@@ -17,7 +17,7 @@
 module ControlUnit(LoadHalf,LoadHalfUnsigned,RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop, OPCode);
 
 	output reg RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg,LoadHalf,LoadHalfUnsigned;
-	output reg[1:0] ALUop;
+	output reg[2:0] ALUop;
 	input wire [5:0] OPCode;
 
 	always@(OPCode) begin
@@ -26,7 +26,7 @@ module ControlUnit(LoadHalf,LoadHalfUnsigned,RegDst, RegWrite, ALUSrc, Branch, M
 			 RegDst <= 1; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 0; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*R instructions*/
 			end
 			6'h08:begin 
-			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*Addi*/ 
+			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 3; /*Addi*/ 
 			end
 			6'h23:begin
 			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 1; MemWrite <= 0; MemtoReg <= 1; ALUop <= 0; /*lw*/ 
@@ -41,10 +41,10 @@ module ControlUnit(LoadHalf,LoadHalfUnsigned,RegDst, RegWrite, ALUSrc, Branch, M
 			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=1; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 1; MemWrite <= 0; MemtoReg <= 1; ALUop <= 0; /*lhu*/
 			end
 			6'h0C:begin 
-			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*andi*/ 
+			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 4; /*andi*/ 
 			end
 			6'h0D:begin
-			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 2; /*ori*/
+			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 1; ALUSrc <= 1; Branch <= 0; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 5; /*ori*/
 			end
 			6'h04:begin 
 			 RegDst <= 0; LoadHalf<=0; LoadHalfUnsigned<=0; RegWrite <= 0; ALUSrc <= 0; Branch <= 1; MemRead <= 0; MemWrite <= 0; MemtoReg <= 0; ALUop <= 1; /*beq*/

@@ -13,7 +13,7 @@ module Processor(clk);
 	wire[3:0] ALUCtrlOut;
 	wire[4:0] RdRoute;
 	wire RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUZero, LoadHalf,LoadHalfUnsigned;
-	wire [1:0] ALUop;
+	wire [2:0] ALUop;
 always@(negedge clk)
 begin
 	if(count==0)
@@ -37,11 +37,11 @@ end
 // end
 
 	RegisterFile RF(ReadData1, ReadData2, instruction[25:21], instruction[20:16], RdRoute, MemRoute, RegWrite, clk);
- always@(posedge clk)
- begin
-	 $display("%d %h %d",pc,instruction,MemRoute);
- end
-	SignExtend SE(SEOut, instruction[15:0]);
+ // always@(posedge clk)
+ // begin
+	//  $display("%d %h %d",pc,instruction,MemRoute);
+ // end
+	// SignExtend SE(SEOut, instruction[15:0]);
 
 	ALUControl ALUCtrl(ALUCtrlOut, ALUop, instruction[5:0]);
 	ALU ALU(ALUOut, ALUZero, ALUCtrlOut, ReadData1, ALUroute);   
@@ -57,7 +57,11 @@ end
 
 	Mux2way32 MemMux(MemRoute, ALUOut, DataMemoryOut, MemtoReg);
 
-
+always@(posedge clk)
+ begin
+	 $display("%d %h %d",pc,instruction,MemRoute);
+ end
+	SignExtend SE(SEOut, instruction[15:0]);
 
 	
 endmodule

@@ -23,6 +23,28 @@ module RegisterFile(ReadData1, ReadData2, ReadReg1, ReadReg2, WriteReg, WriteDat
 
   reg [31:0] Registers[31:0];
 
+initial 
+begin
+    Registers[0] <= 32'h00000000;
+    Registers[8] <= 32'h00000000;
+    Registers[9] <= 32'h00000000;
+    Registers[10] <= 32'h00000000;
+    Registers[11] <= 32'h00000000;
+    Registers[12] <= 32'h00000000;
+    Registers[13] <= 32'h00000000;
+    Registers[14] <= 32'h00000000;
+    Registers[15] <= 32'h00000000;
+    Registers[16] <= 32'h00000000;
+    Registers[17] <= 32'h00000000;
+    Registers[18] <= 32'h00000000;
+    Registers[19] <= 32'h00000000;
+    Registers[20] <= 32'h00000000;
+    Registers[21] <= 32'h00000000;
+    Registers[22] <= 32'h00000000;
+    Registers[23] <= 32'h00000000;
+    Registers[24] <= 32'h00000000;
+    Registers[25] <= 32'h00000000;
+  end
   always @ ( ReadReg1, ReadReg2 )
   begin
     ReadData1 <= (ReadReg1 == 0)? 32'b0 : Registers[ReadReg1];
