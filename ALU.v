@@ -21,9 +21,10 @@
   */
 
 
-module ALU (out, zero, ALUControl, Data1, Data2);   
+module ALU (out, zero, ALUControl, Data1, Data2,shiftvalue);   
 
     input wire [3:0] ALUControl;
+    input wire [4:0] shiftvalue;
     input wire [31:0] Data1,Data2;
 	output reg zero;
     output reg [31:0] out;
@@ -40,8 +41,8 @@ module ALU (out, zero, ALUControl, Data1, Data2);
     
             4'b0111: out <= $signed(Data1) < $signed(Data2) ? 1 : 0;    //slt signed
             4'b1000: out <= Data1 < Data2 ? 1 : 0; //slt unsigned
-            4'b1001: out <= Data1 <<1;             //sll    
-            4'b1010: out <= Data1 >>1;             //srl
+            4'b1001: out <= Data2 <<shiftvalue;             //sll    
+            4'b1010: out <= Data2 >>shiftvalue;             //srl
             default: out <= 0;   
         endcase    
 		zero = (Data2 - Data1 == 0);

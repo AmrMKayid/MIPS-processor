@@ -56,7 +56,6 @@ begin
     if(RegWrite)
       begin
         Registers[WriteReg] <= WriteData;
-        //$display("t0:%d",Registers[08] );
       end
   end
 

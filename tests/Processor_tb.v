@@ -17,6 +17,6 @@ end
 initial
 begin
 
-# 120 $finish;
+# 250 $finish;
 end
 endmodule
