@@ -35,11 +35,11 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 		end
 	end
 
-	always @(posedge MemRead or address)
+	always @(posedge MemRead or address or lh or lhu)
 	begin
 		if(lh)
 			begin
-				if(memory[address + 2][7] == 1)
+				if(memory[7][address + 1] == 1)
 					begin
 						data_out[7:0] = memory[address];
 						data_out[15:8] = memory[address + 1];
@@ -50,8 +50,8 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 				begin
 					data_out[7:0] = memory[address];
 					data_out[15:8] = memory[address + 1];
-					data_out[23:16] = 1;
-					data_out[31:24] = 1;
+					data_out[23:16] = 8'b11111111;
+					data_out[31:24] = 8'b11111111;
 				end
 			end
 		else
@@ -68,10 +68,11 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 						data_out[7:0] = memory[address];
 						data_out[15:8] = memory[address + 1];
 						data_out[23:16] = memory[address + 2];
-						data_out[31:24] =memory[address + 3];
+						data_out[31:24] = memory[address + 3];
 					end
 			end
 	end
+
 
 
 

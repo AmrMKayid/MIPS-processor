@@ -18,7 +18,7 @@ module DataMemory_tb();
 	begin
 			Clk = 0;
 			lh = 0;
-			lhu = 1;
+			lhu = 0;
 		forever begin
 			#5 Clk = ~ Clk;
 		end
@@ -29,13 +29,13 @@ module DataMemory_tb();
 
 	initial 	
 	begin 
-		$monitor("time=%t",$time ,"  In=%d", data_in,"  out=%d", data_out,"  clk=%b", Clk, "  Address:%d", address);
+		$monitor("time=%t",$time ,"  In=%d", data_in,"  out=%d", data_out,"  clk=%b", Clk, "  Address:%d", address, " lhu:%b", lhu , " lh:%b", lh);
  		
 		#10 MemWrite = 1;
 		#0 address = 50;
 		#0 data_in = 1200;
 
-		#10 address = 63;
+		#10 address = 60;
 		#0 data_in = 5400;
 
 		#15 address = 40;
@@ -49,14 +49,14 @@ module DataMemory_tb();
 		#5 address = 50;
 
 
-		#5 address = 63;
+		#5 address = 60;
 
 		#5 address = 40;
 		#5 lh = 1;
-		
+		#5 lh = 0;
 		
 		#5 lhu = 1;  
-		#0 lh = 0;
+
 
 
 		#5 $finish;
