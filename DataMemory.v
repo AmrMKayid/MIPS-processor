@@ -39,7 +39,7 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 	begin
 		if(lh)
 			begin
-				if(memory[7][address + 1] == 1)
+				if(memory[address + 1][7] == 1'b0)
 					begin
 						data_out[7:0] = memory[address];
 						data_out[15:8] = memory[address + 1];
