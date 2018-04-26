@@ -9,6 +9,7 @@ module DataMemory_tb();
 	wire[31:0] data_out;
 	reg[31:0] data_in;
 	reg[31:0] address;
+	reg lh, lhu;
 	reg Clk;
 	reg MemRead;
 	reg MemWrite;
@@ -16,13 +17,15 @@ module DataMemory_tb();
 	initial 
 	begin
 			Clk = 0;
+			lh = 0;
+			lhu = 1;
 		forever begin
 			#5 Clk = ~ Clk;
 		end
 	end
 
 
-	DataMemory dm(data_out, data_in, address, MemRead, MemWrite, Clk);
+	DataMemory dm(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 
 	initial 	
 	begin 
@@ -36,7 +39,7 @@ module DataMemory_tb();
 		#0 data_in = 5400;
 
 		#15 address = 40;
-		#0 data_in = 400;
+		#0 data_in = 131071;
 
 		
 		#5 MemWrite = 0;
@@ -49,9 +52,11 @@ module DataMemory_tb();
 		#5 address = 63;
 
 		#5 address = 40;
-
+		#5 lh = 1;
 		
-		#5 address = 50;
+		
+		#5 lhu = 1;  
+		#0 lh = 0;
 
 
 		#5 $finish;

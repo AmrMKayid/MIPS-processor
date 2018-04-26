@@ -2,7 +2,7 @@ module ALUControl_tb();
 
 wire[3:0] out;
 
-reg[1:0] ALUOp;
+reg[2:0] ALUOp;
 
 reg[5:0] FuncCode;
 

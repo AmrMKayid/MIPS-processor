@@ -1,6 +1,6 @@
 module ProgramCounter_tb ();
 
-  wire reg[31:0] NextPC;
+  wire [31:0] NextPC;
   reg [31:0] Address;
   reg clk;
 

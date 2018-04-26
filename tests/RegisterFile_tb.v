@@ -1,6 +1,6 @@
 module RegisterFile_tb ();
 
-  wire reg[31:0] ReadData1, ReadData2;
+  wire[31:0] ReadData1, ReadData2;
   reg [4:0] ReadReg1, ReadReg2, WriteReg;
   reg [31:0] WriteData;
   reg RegWrite, clk;

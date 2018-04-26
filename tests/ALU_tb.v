@@ -1,6 +1,7 @@
 module ALU_tb();
 reg [3:0] ALUControl;
 reg [31:0] Data1,Data2;
+reg[4:0] shiftValue;
 wire [31:0] out;
 wire zero;
 initial begin
@@ -13,7 +14,7 @@ initial begin
 
 end
  
-ALU alu (out,zero, ALUControl, Data1, Data2);
+ALU alu (out,zero, ALUControl, Data1, Data2, shiftValue);
  
 initial begin
 $monitor("ALUControl=%d $Data1=%b  $Data2=%b  out=%b" , ALUControl, Data1, Data2 , out);

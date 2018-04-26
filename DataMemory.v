@@ -9,16 +9,18 @@
   *		-address: references a word in the memory
   *		-MemRead: signals it's a read operation
   *		-MemWrite: signals it's a write operation
-  *
+  *		-lh: set to 1 when you want to load two words; they will be padded with 16 bits according to the sign
+  *		-lhu: set to 1 when you want to load two words padded with zeros
   */
-module DataMemory(data_out, data_in, address, MemRead, MemWrite, Clk);
+module DataMemory(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 	output reg[31:0] data_out;
 	input wire[31:0] data_in;
 	input wire[31:0] address;
-	input wire Clk;
+	input wire lh, lhu, Clk;
 	input wire MemRead;
 	input wire MemWrite;
 	
+
 	reg[7:0] memory[63:0];
 
 
@@ -34,11 +36,43 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, Clk);
 	end
 
 	always @(posedge MemRead or address)
-		if(MemRead) begin
-			data_out[7:0] = memory[address];
-			data_out[15:8] = memory[address + 1];
-			data_out[23:16] = memory[address + 2];
-			data_out[31:24] =memory[address + 3];
-		end
+	begin
+		if(lh)
+			begin
+				if(memory[address + 2][7] == 1)
+					begin
+						data_out[7:0] = memory[address];
+						data_out[15:8] = memory[address + 1];
+						data_out[23:16] = 0;
+						data_out[31:24] = 0;
+					end
+				else
+				begin
+					data_out[7:0] = memory[address];
+					data_out[15:8] = memory[address + 1];
+					data_out[23:16] = 1;
+					data_out[31:24] = 1;
+				end
+			end
+		else
+			begin 
+				if(lhu) 
+					begin 
+						data_out[7:0] = memory[address];
+						data_out[15:8] = memory[address + 1];
+						data_out[23:16] = 0;
+						data_out[31:24] = 0;
+					end
+				else
+					begin
+						data_out[7:0] = memory[address];
+						data_out[15:8] = memory[address + 1];
+						data_out[23:16] = memory[address + 2];
+						data_out[31:24] =memory[address + 3];
+					end
+			end
+	end
+
+
 
 endmodule

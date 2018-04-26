@@ -30,7 +30,7 @@ module Processor(clk);
 	
 	ALU ALU(ALUOut, ALUZero, ALUCtrlOut, ReadData1, ALUroute,instruction[10:6]);   
 	
-	DataMemory DM(DataMemoryOut, ReadData2, ALUOut, MemRead, MemWrite, clk);
+	DataMemory DM(DataMemoryOut, ReadData2, ALUOut, MemRead, MemWrite,LoadHalf, LoadHalfUnsigned, clk);
 
 	ControlUnit CU(LoadHalf,LoadHalfUnsigned, RegDst, RegWrite, ALUSrc, Branch, MemRead, MemWrite, MemtoReg, ALUop, instruction[31:26]);
 	
@@ -43,6 +43,10 @@ module Processor(clk);
 	Mux2way32 MemMux(MemRoute, ALUOut, DataMemoryOut, MemtoReg);
 
 	SignExtend SE(SEOut, instruction[15:0]);
+
+
+
+/*Display the values in the Processor components*/
 always@(posedge clk)
 begin
  $display("%d %h",pc,instruction);
