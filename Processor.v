@@ -44,45 +44,5 @@ module Processor(clk);
 
 	SignExtend SE(SEOut, instruction[15:0]);
 
-
-
-/*Display the values in the Processor components*/
-always@(posedge clk)
-begin
- $display("%d %h",pc,instruction);
-
-  if(MemRead)
- begin
- 	$display("Value:%d was read out of DataMemory",DataMemoryOut);
- end
-  if(MemWrite)
-  begin
-  	$display("Value:%d was written in DataMemory",ReadData2);
-  end
- if(RegWrite)
- begin
- 	 case (RdRoute)
-        8:$display("Value:%d was written in Register:$t0",MemRoute);
-        9:$display("Value:%d was written in Register:$t1",MemRoute);
-        10:$display("Value:%d was written in Register:$t2",MemRoute);
-        11:$display("Value:%d was written in Register:$t3",MemRoute);
-        12:$display("Value:%d was written in Register:$t4",MemRoute);
-        13:$display("Value:%d was written in Register:$t5",MemRoute);
-        14:$display("Value:%d was written in Register:$t6",MemRoute);
-        15:$display("Value:%d was written in Register:$t7",MemRoute);
-        16:$display("Value:%d was written in Register:$s0",MemRoute);
-        17:$display("Value:%d was written in Register:$s1",MemRoute);
-        18:$display("Value:%d was written in Register:$s2",MemRoute);
-        19:$display("Value:%d was written in Register:$s3",MemRoute);
-        20:$display("Value:%d was written in Register:$s4",MemRoute);
-        21:$display("Value:%d was written in Register:$s5",MemRoute);
-        22:$display("Value:%d was written in Register:$s6",MemRoute);
-        23:$display("Value:%d was written in Register:$s7",MemRoute);
-        default:$display("");
-        endcase
- end
-
- end
-
 	
 endmodule
