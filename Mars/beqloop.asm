@@ -1,0 +1,9 @@
+addi $t0,$t0,1
+addi $t1,$t1,4
+addi $t2,$t2,0
+addi $t3,$t3,1
+Loop:slt $t2,$t0,$t1
+     addi $t0,$t0,1
+     beq  $t2,$t3,Loop
+addi $t4,$t4,-1
+slt $t5,$t4,$t0

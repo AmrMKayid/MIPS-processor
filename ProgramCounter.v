@@ -14,7 +14,10 @@ module ProgramCounter(NextPC, Address, clk);
   output reg[31:0] NextPC;
   input [31:0] Address;
   input clk;
-
+  initial 
+    begin
+      NextPC<=-4;
+    end
   always @ ( posedge clk )
   begin
     NextPC <= Address;
