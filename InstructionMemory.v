@@ -8,7 +8,7 @@ reg [7:0] memory[0:500];
 reg [31:0] helper;
 initial
 begin
-$readmemh("program/addi.txt",memory);
+$readmemh("program/pipeline.txt",memory);
 end
 always @ (posedge clk)
 begin
