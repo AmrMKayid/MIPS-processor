@@ -8,7 +8,7 @@ reg [7:0] memory[0:500];
 reg [31:0] helper;
 initial
 begin
-$readmemh("program/loadhalf.txt",memory);
+$readmemh("program/addi.txt",memory);
 end
 always @ (posedge clk)
 begin

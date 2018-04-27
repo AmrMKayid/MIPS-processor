@@ -1,11 +1,13 @@
-module EXMEM (clk, outWB, outM, outAddResult, outZero, outALUResult, outReadData2,outWriteBack, WB, M, addResult, zero, ALUResult, readData2,writeBack);   
+module EXMEM (outLoadHalf,outLoadHalfUnsigned,outWB,outMemtoReg, outMR,outMW,out_branch, outAddResult, outZero, outALUResult, outReadData2,outWriteBack, WB,
+    inMemtoReg, MR,MW,branch, addResult, zero, ALUResult, readData2,writeBack,LoadHalf,LoadHalfUnsigned,clk);   
 
     input  clk;
-    input [31:0] addResult, ALUResult, readData2;
-    input [31:0] writeBack;
-    input WB,M, zero;
-    output reg [31:0] outAddResult, outALUResult, outReadData2, outWriteBack;
-    output reg outWB, outZero, outM;
+    input wire [31:0] addResult, ALUResult, readData2;
+    input wire [4:0] writeBack;
+    input wire WB,MR,MW,branch, zero,inMemtoReg,LoadHalf,LoadHalfUnsigned;
+    output reg [31:0] outAddResult, outALUResult, outReadData2;
+    output reg [4:0] outWriteBack;
+    output reg outWB,outMemtoReg, outZero, outMR,outMW,out_branch,outLoadHalf,outLoadHalfUnsigned;
 
     always @(posedge clk)
     begin
@@ -13,10 +15,14 @@ module EXMEM (clk, outWB, outM, outAddResult, outZero, outALUResult, outReadData
     outALUResult <= ALUResult;
     outReadData2 <= readData2;
     outWriteBack <= writeBack;
-    
+    outMemtoReg<=inMemtoReg;
     outWB <= WB;
     outZero <= zero;
-    outM <= M;
+    outMR <= MR;
+    outMW <=MW;
+    out_branch<=branch;
+    outLoadHalf<=LoadHalf;
+    outLoadHalfUnsigned<=LoadHalfUnsigned;
 
 end 
     

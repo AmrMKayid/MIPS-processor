@@ -17,7 +17,7 @@ end
 initial
 begin
 
-# 250 $finish;
+# 300 $finish;
 end
 
 
@@ -26,19 +26,24 @@ end
 /*Display the values in the Processor components*/
 always@(posedge clk)
 begin
- $display("%d %h",mips.pc, mips.instruction);
-
-  if(mips.MemRead)
+ $display("%d ",mips.pc);
+ //$display("%h %h %h %b %h %h %h %h",mips.ALUroute,mips.out_Readdata2, mips.out_extended, mips.out_AlUsrc,mips.ReadData1, mips.ReadData2, mips.OutInstruction[25:21], mips.OutInstruction[20:16]);
+// $display("outAluResult:%h",mips.outALUResult);
+// $display("RF ReadData1:%d, ReadData2:%d, OutInstruction[25:21]:%h,OutInstruction[20:16]:%h, outWriteBackfinal:%h,outWBRegWrite:%b ,MemRoute:%d",
+// 		mips.ReadData1,mips.ReadData2,mips.OutInstruction[25:21],mips.OutInstruction[20:16],mips.outWriteBackfinal,mips.outWBRegWrite,mips.MemRoute);
+ 	 // $display("ALUop:%h ,outWB:%b ,outMemtoReg:%b, outMR:%b ,out_MW:%b,out_RegDst:%b,outReadData2:%d",
+ 	 // 	mips.out_ALUop,mips.outWB,mips.outMemtoReg,mips.outMR,mips.outMW,mips.outWriteBack,mips.outReadData2);
+  if(mips.outMR)
  begin
  	$display("Value:%d was read out of DataMemory", mips.DataMemoryOut);
  end
-  if(mips.MemWrite)
+  if(mips.outMW)
   begin
-  	$display("Value:%d was written in DataMemory", mips.ReadData2);
+  	$display("Value:%d was written in DataMemory", mips.outReadData2);
   end
- if(mips.RegWrite)
+ if(mips.outWBRegWrite )
  begin
- 	 case (mips.RdRoute)
+ 	 case (mips.outWriteBackfinal)
         8:$display("Value:%d was written in Register:$t0",mips.MemRoute);
         9:$display("Value:%d was written in Register:$t1",mips.MemRoute);
         10:$display("Value:%d was written in Register:$t2",mips.MemRoute);
@@ -58,6 +63,7 @@ begin
         default:$display("");
         endcase
  end
+
 
  end
 
