@@ -17,7 +17,7 @@ end
 initial
 begin
 
-# 450 $finish;
+# 400 $finish;
 end
 
 
