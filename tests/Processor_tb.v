@@ -15,6 +15,51 @@ end
 
 initial
 begin
+     mips.RF.Registers[0] <= 32'h00000000;
+     mips.RF.Registers[8] <= 32'h00000000;
+     mips.RF.Registers[9] <= 32'h00000000;
+     mips.RF.Registers[10] <= 32'h00000000;
+     mips.RF.Registers[11] <= 32'h00000000;
+     mips.RF.Registers[12] <= 32'h00000000;
+     mips.RF.Registers[13] <= 32'h00000000;
+     mips.RF.Registers[14] <= 32'h00000000;
+     mips.RF.Registers[15] <= 32'h00000000;
+     mips.RF.Registers[16] <= 32'h00000000;
+     mips.RF.Registers[17] <= 32'h00000000;
+     mips.RF.Registers[18] <= 32'h00000000;
+     mips.RF.Registers[19] <= 32'h00000000;
+     mips.RF.Registers[20] <= 32'h00000000;
+     mips.RF.Registers[21] <= 32'h00000000;
+     mips.RF.Registers[22] <= 32'h00000000;
+     mips.RF.Registers[23] <= 32'h00000000;
+     mips.RF.Registers[24] <= 32'h00000000;
+     mips.RF.Registers[25] <= 32'h00000000;
+     mips.DM.memory[0] <= 8'h0;
+     mips.DM.memory[1] <= 8'h0;
+     mips.DM.memory[2] <= 8'h0;
+     mips.DM.memory[3] <= 8'h0;
+     mips.DM.memory[4] <= 8'h0;
+     mips.DM.memory[5] <= 8'h0;
+     mips.DM.memory[6] <= 8'h0;
+     mips.DM.memory[7] <= 8'h0;
+     mips.DM.memory[8] <= 8'h0;
+     mips.DM.memory[9] <= 8'h0;
+     mips.DM.memory[10] <= 8'h0;
+     mips.DM.memory[11] <= 8'h0;
+     mips.DM.memory[12] <= 8'h0;
+     mips.DM.memory[13] <= 8'h0;
+     mips.DM.memory[14] <= 8'h0;
+     mips.DM.memory[15] <= 8'h0;
+     mips.DM.memory[16] <= 8'h0;
+     mips.DM.memory[17] <= 8'h0;
+     mips.DM.memory[18] <= 8'h0;
+     mips.DM.memory[19] <= 8'h0;
+     mips.DM.memory[20] <= 8'h0;
+     mips.DM.memory[21] <= 8'h0;
+     mips.DM.memory[22] <= 8'h0;
+     mips.DM.memory[23] <= 8'h0;
+     mips.DM.memory[24] <= 8'h0;
+     mips.DM.memory[25] <= 8'h0;
 # 400 finish<=1;
 # 10 $finish;
 
