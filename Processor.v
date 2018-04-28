@@ -28,9 +28,7 @@ module Processor(clk);
 	InstructionMemory IM(instruction,PCRoute,clk);
 	
 	IFID IFID(OutPCin0,OutInstruction,PCin0,instruction,clk);
-	always @(OutInstruction) begin
-	$display("instruction:%h was fetched",OutInstruction);
-	end
+	
 	
 
 	IDEX IDEX(out_LoadHalf,out_LoadHalfUnsigned,out_WB,out_MemtoReg,out_MR,out_MW,out_branch,out_RegDst,out_ALUop,out_AlUsrc,out_address,out_Readdata1,out_Readdata2,out_extended,out_Instruction20_16,

@@ -17,7 +17,7 @@ end
 initial
 begin
 
-# 300 $finish;
+# 450 $finish;
 end
 
 
@@ -26,7 +26,9 @@ end
 /*Display the values in the Processor components*/
 always@(posedge clk)
 begin
+
  $display("%d ",mips.pc);
+ $display("instruction:%h was fetched",mips.OutInstruction);
  //$display("%h %h %h %b %h %h %h %h",mips.ALUroute,mips.out_Readdata2, mips.out_extended, mips.out_AlUsrc,mips.ReadData1, mips.ReadData2, mips.OutInstruction[25:21], mips.OutInstruction[20:16]);
 // $display("outAluResult:%h",mips.outALUResult);
 // $display("RF ReadData1:%d, ReadData2:%d, OutInstruction[25:21]:%h,OutInstruction[20:16]:%h, outWriteBackfinal:%h,outWBRegWrite:%b ,MemRoute:%d",
