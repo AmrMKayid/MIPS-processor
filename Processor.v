@@ -5,8 +5,8 @@
   *
   */
 
-module Processor(clk);
-	input clk;
+module Processor(finish,clk);
+	input finish,clk;
 	wire[31:0] pc,  instruction, ReadData1, ReadData2, ALUOut, SEOut, PCin0, PCin1, shl, ALUroute, MemRoute, PCRoute, DataMemoryOut,OutInstruction,OutPCin0,
 	out_address,out_Readdata1,out_Readdata2,out_extended,outAddResult,outALUResult,outReadData2,outReadData,outAddress;
 	wire[3:0] ALUCtrlOut;
@@ -15,6 +15,7 @@ module Processor(clk);
 	wire [2:0] ALUop,out_ALUop;
 	wire  out_WB,out_MemtoReg,out_RegDst,out_AlUsrc,out_MR,out_MW,out_branch,out_LoadHalf,out_LoadHalfUnsigned,outWB,outMemtoReg, outMR,outMW,outbranch, outZero,
 	outLoadHalf,outLoadHalfUnsigned,outWBRegWrite,outWBMemtoReg;
+	
 	Adder PCadder0(PCin0, pc, 4);
 	
 	Adder PCadder1(PCin1, out_address, shl);
@@ -35,21 +36,17 @@ module Processor(clk);
 		out_Instruction15_11,out_Instruction10_6,RegWrite,MemtoReg,MemRead,MemWrite,Branch,RegDst,ALUop,ALUSrc,OutPCin0,
 		ReadData1,ReadData2,SEOut,OutInstruction[20:16],OutInstruction[15:11],OutInstruction[10:6],LoadHalf,LoadHalfUnsigned,clk);
 
-// always @(OutInstruction) begin
-// 	$display("ALUop:%h ,out_WB:%b ,out_MemtoReg:%b, out_MR:%b ,out_MW:%b,out_AlUsrc:%b,out_RegDst:%b",out_ALUop,out_WB,out_MemtoReg,out_MR,out_MW,out_AlUsrc,out_RegDst);
-// 	end
+
 
     EXMEM EXMEM (outLoadHalf,outLoadHalfUnsigned,outWB,outMemtoReg, outMR,outMW,outbranch, outAddResult, outZero, outALUResult, outReadData2,
     	outWriteBack, out_WB,out_MemtoReg, out_MR,out_MW,out_branch,PCin1, ALUZero, ALUOut, out_Readdata2,RdRoute,out_LoadHalf,out_LoadHalfUnsigned,clk);   
 	
-	// always @(OutInstruction) begin
-	// $display("ALUop:%h ,out_WB:%b ,out_MemtoReg:%b, out_MR:%b ,out_MW:%b,out_RegDst:%b,outReadData2:%d",out_ALUop,outWB,outMemtoReg,outMR,outMW,outWriteBack,outReadData2);
-	// end
 
 	MEMWEB MEMWEB ( outReadData, outWBRegWrite,outWBMemtoReg, outAddress, outWriteBackfinal,DataMemoryOut, outALUResult, outWB,outMemtoReg,outWriteBack ,clk);
 
 
 	RegisterFile RF(ReadData1, ReadData2, OutInstruction[25:21], OutInstruction[20:16], outWriteBackfinal, MemRoute, outWBRegWrite, clk);
+
 	
 	ALUControl ALUCtrl(ALUCtrlOut, out_ALUop, out_extended[5:0]);
 	
