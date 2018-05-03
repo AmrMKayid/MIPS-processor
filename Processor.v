@@ -15,6 +15,10 @@ module Processor(finish,clk);
 	wire [2:0] ALUop,out_ALUop;
 	wire  out_WB,out_MemtoReg,out_RegDst,out_AlUsrc,out_MR,out_MW,out_branch,out_LoadHalf,out_LoadHalfUnsigned,outWB,outMemtoReg, outMR,outMW,outbranch, outZero,
 	outLoadHalf,outLoadHalfUnsigned,outWBRegWrite,outWBMemtoReg;
+
+	wire[1:0] forwardA, forwardB;
+
+	wire[31:0] forwardAALU_In, forwardBALU_In;
 	
 	Adder PCadder0(PCin0, pc, 4);
 	
@@ -50,7 +54,7 @@ module Processor(finish,clk);
 	
 	ALUControl ALUCtrl(ALUCtrlOut, out_ALUop, out_extended[5:0]);
 	
-	ALU ALU(ALUOut, ALUZero, ALUCtrlOut, out_Readdata1, ALUroute,out_Instruction10_6);   
+	ALU ALU(ALUOut, ALUZero, ALUCtrlOut, forwardAALU_In, forwardBALU_In,out_Instruction10_6);   
 	
 	DataMemory DM(DataMemoryOut, outReadData2, outALUResult, outMR, outMW,outLoadHalf,outLoadHalfUnsigned, clk);
 
@@ -66,5 +70,10 @@ module Processor(finish,clk);
 
 	SignExtend SE(SEOut, OutInstruction[15:0]);
 
-	
+
+	forwardingUnit FU(forwardA, forwardB, out_Instruction20_16, out_Instruction15_11, outWriteBack, outWriteBackfinal, outWBRegWrite, out_WB);
+
+	Mux4way32 ForwardAMUX(forwardAALU_In, out_Readdata1, MemRoute, outALUResult, 0, forwardA);
+	Mux4way32 ForwardBMUX(forwardBALU_In, ALUroute, MemRoute, outALUResult, 0, forwardB);
+
 endmodule
