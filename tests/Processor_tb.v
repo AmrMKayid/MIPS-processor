@@ -15,7 +15,7 @@ end
 
 initial
 begin
-$readmemh("program/pipelinefinal.bin", mips.DM);
+$readmemh("program/pipelinefinal.bin", mips.IM.memory);
 end
 
 initial
