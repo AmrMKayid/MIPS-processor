@@ -21,7 +21,7 @@ module forwardingUnit (forwardA, forwardB, ID_EX_rs, ID_EX_rt, EX_MEM_rd, MEM_WB
 	output reg[1:0] forwardA, forwardB;
 	input [4:0] ID_EX_rs, ID_EX_rt, EX_MEM_rd, MEM_WB_rd;
 	input MEM_WB_RegWrite, EX_MEM_RegWrite;
-	always @(ID_EX_rs or ID_EX_rt or EX_MEM_rd or MEM_WB_rd or MEM_WB_RegWrite) begin
+	always @(ID_EX_rs or ID_EX_rt or EX_MEM_rd or MEM_WB_rd or MEM_WB_RegWrite or EX_MEM_RegWrite) begin
 		
 		if(EX_MEM_RegWrite && EX_MEM_rd != 0 && EX_MEM_rd == ID_EX_rs)
 			forwardA = 2'b10;
