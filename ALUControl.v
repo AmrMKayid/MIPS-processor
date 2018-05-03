@@ -6,7 +6,7 @@ output reg [3:0] out;
 
     always @ (ALUOp or FuncCode)
     begin
-        if (ALUOp == 3'b0)
+        if (ALUOp == 3'b000)
         begin
             out<=2;        //ADD   
         end

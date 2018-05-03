@@ -22,35 +22,7 @@ module DataMemory(data_out, data_in, address, MemRead, MemWrite, lh, lhu, Clk);
 	
 
 	reg[7:0] memory[63:0];
-initial 
-begin
-    memory[0] <= 8'h0;
-    memory[1] <= 8'h0;
-    memory[2] <= 8'h0;
-    memory[3] <= 8'h0;
-    memory[4] <= 8'h0;
-    memory[5] <= 8'h0;
-    memory[6] <= 8'h0;
-    memory[7] <= 8'h0;
-    memory[8] <= 8'h0;
-    memory[9] <= 8'h0;
-    memory[10] <= 8'h0;
-    memory[11] <= 8'h0;
-    memory[12] <= 8'h0;
-    memory[13] <= 8'h0;
-    memory[14] <= 8'h0;
-    memory[15] <= 8'h0;
-    memory[16] <= 8'h0;
-    memory[17] <= 8'h0;
-    memory[18] <= 8'h0;
-    memory[19] <= 8'h0;
-    memory[20] <= 8'h0;
-    memory[21] <= 8'h0;
-    memory[22] <= 8'h0;
-    memory[23] <= 8'h0;
-    memory[24] <= 8'h0;
-    memory[25] <= 8'h0;
-  end
+
 
 	always @(posedge Clk)
 	begin 
