@@ -15,6 +15,11 @@ end
 
 initial
 begin
+$readmemh("program/pipelinefinal.bin", mips.DM);
+end
+
+initial
+begin
      mips.RF.Registers[0] <= 32'h00000000;
      mips.RF.Registers[8] <= 32'h00000000;
      mips.RF.Registers[9] <= 32'h00000000;

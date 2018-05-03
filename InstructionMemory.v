@@ -6,10 +6,7 @@ input wire [31:0] address;
 output reg [31:0] instruction;
 reg [7:0] memory[0:143];
 reg [31:0] helper;
-initial
-begin
-$readmemh("program/pipelinefinal.txt",memory);
-end
+
 always @ (posedge clk)
 begin
 
