@@ -56,7 +56,7 @@ First you will need to write a program in MIPS assembly that uses only the speci
 
 Note: Almost any program can be written and executed using the provided instructiosn set.
 
-#### Compiling the processor
+#### Compile the processor
 
 ###### In case you are on a unix enviroment you will just need to the run the following command
 `make processor`
@@ -66,7 +66,7 @@ Note: Almost any program can be written and executed using the provided instruct
 
 These commands should create the following file "**processor**"
 
-#### Simulation: 
+#### Simulate the Execution: 
 Run the following command to begin the simulation: 
 `vvp processor`
  
