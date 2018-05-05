@@ -15,7 +15,7 @@ end
 
 initial
 begin
-$readmemh("program/pipelinefinal.bin", mips.IM.memory);
+$readmemh("program/additition_hazard.bin", mips.IM.memory);
 end
 
 initial
